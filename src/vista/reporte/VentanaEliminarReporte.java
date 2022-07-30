@@ -32,6 +32,7 @@ public class VentanaEliminarReporte extends javax.swing.JFrame {
     public VentanaEliminarReporte() {
         initComponents();
         cargarTabla();
+        limpiar();
     }
     
     public void setCoordinador(Coordinador miCoordinador) {
@@ -79,6 +80,7 @@ public class VentanaEliminarReporte extends javax.swing.JFrame {
         jLabel1.setText("MENU - ELIMINAR REPORTES ");
 
         btnEliminar.setText("ELIMINAR REPORTE");
+        btnEliminar.setEnabled(false);
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
@@ -226,16 +228,16 @@ public class VentanaEliminarReporte extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        PacienteVO pacienteMod=new PacienteVO();
-        PacienteDAO Pacientedao = new PacienteDAO();
+       PacienteVO pacienteMod=new PacienteVO();
+       PacienteDAO Pacientedao = new PacienteDAO();
        pacienteMod=miCoordinador.buscarPaciente(Integer.parseInt(txtID.getText()));
        if(pacienteMod!=null){  
-            llenarTabla(Integer.parseInt(txtID.getText()));
+            validarCantidadReportes(Integer.parseInt(txtID.getText()));
        }else{
            JOptionPane.showMessageDialog(null, "ESTE PACIENTE NO EXISTE", "ERROR", JOptionPane.ERROR_MESSAGE);
        }
        
-         try {
+        try {
             pacienteMod = Pacientedao.LabeltxtPaciente(Integer.parseInt(txtID.getText()));
             lblNombre.setText(pacienteMod.getNombre() + " " + pacienteMod.getApellido());
         } catch (SQLException ex) {
@@ -251,14 +253,13 @@ public class VentanaEliminarReporte extends javax.swing.JFrame {
         try{
         fila=tablaReportes.getSelectedRow();
         columna=tablaReportes.getSelectedColumn();
-        //System.out.print(fila+"-"+columna);
         if((fila>=0) || (columna>=0))     
             modificarColumnaMayor(columna,fila);
         else
             JOptionPane.showMessageDialog(null, "DEBE SELECCIONAR UNA EMERGENCIA", "ERROR", JOptionPane.ERROR_MESSAGE);
         }catch(NumberFormatException ex)
         {
-            JOptionPane.showMessageDialog(null, "ID INVALIDO CARAJO", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "ID INVALIDO", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
@@ -288,6 +289,7 @@ public void habilitarBoton()
             else
             {
                 btnBuscar.setEnabled(false);
+                btnEliminar.setEnabled(false);
             }
         }
     public void modificarColumnaMayor(int columna, int fila){
@@ -299,6 +301,7 @@ public void habilitarBoton()
         //miCoordinador.mostrarTextoConsultarClinica(reporte.getDescripcion());
         if(resp.equals("ok")){
             cargarTabla();
+            llenarTabla(Integer.parseInt(txtID.getText()));
             JOptionPane.showMessageDialog(null, "REPORTE ELIMINADO EXISOTAMENTE");  
 	}else{
             System.out.println(resp);
@@ -308,26 +311,38 @@ public void habilitarBoton()
 
     }
     
-    public void llenarTabla(int id){
+    public void validarCantidadReportes(int id){
         ArrayList<ReporteVO> listaReportes=miCoordinador.getListaReportes(id);
         modelo.setRowCount(0);
         int contador=0;
         if(listaReportes.size()>0){
             for(ReporteVO r:listaReportes){
                 modelo.insertRow(contador, new Object[]{});
-        
                 modelo.setValueAt(r.getIdReporte(), contador, 0);
                 modelo.setValueAt(r.getFechaRegistro().getDia()+"-"+r.getFechaRegistro().getMes()+"-"+r.getFechaRegistro().getAn(), contador, 1);
                 modelo.setValueAt(r.getMunicipio().name(), contador, 2);
                 modelo.setValueAt(r.getClinica(), contador, 3);
+                btnEliminar.setEnabled(true);
 
             }
         }else{
             JOptionPane.showMessageDialog(null, "ESTE PACIENTE NO TIENE EMERGENCIAS", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
-        
     }
     
+    public void llenarTabla(int id){
+        ArrayList<ReporteVO> listaReportes=miCoordinador.getListaReportes(id);
+        modelo.setRowCount(0);
+        int contador=0;
+        for(ReporteVO r:listaReportes){
+            modelo.insertRow(contador, new Object[]{});
+            modelo.setValueAt(r.getIdReporte(), contador, 0);
+            modelo.setValueAt(r.getFechaRegistro().getDia()+"-"+r.getFechaRegistro().getMes()+"-"+r.getFechaRegistro().getAn(), contador, 1);
+            modelo.setValueAt(r.getMunicipio().name(), contador, 2);
+            modelo.setValueAt(r.getClinica(), contador, 3);
+
+        } 
+    }
     
     public void cargarTabla(){
         String datos[][]={};
@@ -348,9 +363,13 @@ public void habilitarBoton()
     }
     
     public void limpiar(){
-        txtID.setText("");
-        lblNombre.setText("");
-        vaciarTabla();
+        try{
+            txtID.setText("");
+            lblNombre.setText("");
+            vaciarTabla();
+        }catch(NullPointerException e){
+            txtID.setText("");
+        }
     }
     
     /**

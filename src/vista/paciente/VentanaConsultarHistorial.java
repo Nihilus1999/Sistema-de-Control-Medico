@@ -28,6 +28,7 @@ public class VentanaConsultarHistorial extends javax.swing.JFrame {
     public VentanaConsultarHistorial() {
         initComponents();
         cargarTabla();
+        limpiar();
     }
     
     public void setCoordinador(Coordinador miCoordinador) {
@@ -290,8 +291,12 @@ public void habilitarBoton()
     }
     
     public void limpiar(){
-        txtID.setText("");
-        vaciarTabla();
+        try{
+            txtID.setText("");
+            vaciarTabla();
+        }catch(NullPointerException e){
+            txtID.setText("");
+        }
     }
     
     

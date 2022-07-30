@@ -29,6 +29,7 @@ public class VentanaEliminarClinica extends javax.swing.JFrame {
     public VentanaEliminarClinica() {
         initComponents();
         cargarTabla();
+        limpiar();
     }
     
     public void setCoordinador(Coordinador miCoordinador) {
@@ -90,6 +91,7 @@ public class VentanaEliminarClinica extends javax.swing.JFrame {
         jLabel2.setText("MENU - ELIMINAR CLINICA AFILIADA");
 
         btnEliminar.setText("ELIMINAR CLINICA AFILIADA");
+        btnEliminar.setEnabled(false);
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
@@ -97,9 +99,15 @@ public class VentanaEliminarClinica extends javax.swing.JFrame {
         });
 
         cbMunicipio.setModel(new javax.swing.DefaultComboBoxModel<>(new MunicipioVO[] { MunicipioVO.BARUTA, MunicipioVO.CHACAO, MunicipioVO.HATILLO, MunicipioVO.LIBERTADOR, MunicipioVO.SUCRE }));
+        cbMunicipio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         cbMunicipio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbMunicipioActionPerformed(evt);
+            }
+        });
+        cbMunicipio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cbMunicipioKeyReleased(evt);
             }
         });
 
@@ -157,6 +165,7 @@ public class VentanaEliminarClinica extends javax.swing.JFrame {
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         this.miCoordinador.mostrarVentanaGestionClinica();
+        limpiar();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -167,7 +176,7 @@ public class VentanaEliminarClinica extends javax.swing.JFrame {
         if((fila>=0) || (columna>=0))     
             modificarColumnaMayor(columna,fila);
         else
-            JOptionPane.showMessageDialog(null, "DEBE SELECCIONAR UNA CLINICA", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "DEBE SELECCIONAR UNA CLINICA EN LA TABLA", "ERROR", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     public void modificarColumnaMayor(int columna, int fila){
@@ -188,18 +197,30 @@ public class VentanaEliminarClinica extends javax.swing.JFrame {
     
     
     private void cbMunicipioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMunicipioActionPerformed
-        String item = cbMunicipio.getSelectedItem().toString();
-        ArrayList<String> aux=miCoordinador.devolverClinicas(item);
-        if(aux.size()<1)
-            JOptionPane.showMessageDialog(null, "NO HAY CLINICAS EN ESTE MUNICIPIO", "ERROR", JOptionPane.ERROR_MESSAGE);
-        modelo.setRowCount(0);
-        int contador=0;
-        for(String c:aux){
-            modelo.insertRow(contador, new Object[]{});
-            modelo.setValueAt(c, contador, 0);
-            modelo.setValueAt(item, contador, 1);
+        try{
+            String item = cbMunicipio.getSelectedItem().toString();
+            ArrayList<String> aux=miCoordinador.devolverClinicas(item);
+            if(aux.size()<1){
+                JOptionPane.showMessageDialog(null, "ESTE MUNICIPIO NO POSEE CLINICAS AFILIADAS", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+            else{
+               btnEliminar.setEnabled(true);
+               modelo.setRowCount(0);
+                int contador=0;
+                for(String c:aux){
+                    modelo.insertRow(contador, new Object[]{});
+                    modelo.setValueAt(c, contador, 0);
+                    modelo.setValueAt(item, contador, 1); 
+                } 
+            } 
+        }catch(NullPointerException e){
+               
         }
     }//GEN-LAST:event_cbMunicipioActionPerformed
+
+    private void cbMunicipioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cbMunicipioKeyReleased
+        btnEliminar.setEnabled(false);
+    }//GEN-LAST:event_cbMunicipioKeyReleased
 
 
     public void cargarTabla(){
@@ -209,6 +230,26 @@ public class VentanaEliminarClinica extends javax.swing.JFrame {
             public boolean isCellEditable(int rowIndex, int columnIndex){return false;}
         };
         tablaClinicas.setModel(modelo);
+    }
+    
+    public void vaciarTabla(){
+        ArrayList<PacienteVO> listaPacientes=miCoordinador.getListaPacientes();
+        modelo.setRowCount(0);
+        int contador=modelo.getRowCount();
+        for(int i = contador; i >0; i--){
+            modelo.removeRow(i);
+        }
+    }
+    
+    public void limpiar(){
+        try{
+            vaciarTabla();
+            btnEliminar.setEnabled(false);
+            cbMunicipio.setSelectedIndex(-1);
+            
+        }catch(NullPointerException e){
+            cbMunicipio.setSelectedIndex(-1);
+        }
     }
     
     /**

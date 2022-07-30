@@ -22,6 +22,7 @@ public class VentanaAgregarClinica extends javax.swing.JFrame {
      */
     public VentanaAgregarClinica() {
         initComponents();
+        limpiar();
     }
     
     public void setCoordinador(Coordinador miCoordinador) {
@@ -144,6 +145,7 @@ public class VentanaAgregarClinica extends javax.swing.JFrame {
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         this.miCoordinador.mostrarVentanaGestionClinica();
+        limpiar();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
@@ -164,7 +166,8 @@ public class VentanaAgregarClinica extends javax.swing.JFrame {
            String resp=miCoordinador.RegistrarClinica(clinicaN);
            if(resp.equals("ok")){
                 JOptionPane.showMessageDialog(null, "CLINICA  AGREGADA EXISOTAMENTE");
-                miCoordinador.mostrarVentanaGestionClinica();
+                limpiar();
+                
            }else{
                 JOptionPane.showMessageDialog(null, "ERROR AGREGANDO CLINICA", "ERROR", JOptionPane.ERROR_MESSAGE);
           }
@@ -184,6 +187,16 @@ public class VentanaAgregarClinica extends javax.swing.JFrame {
         }
         else btnAgregar.setEnabled(false);
     
+    }
+    
+    public void limpiar(){
+        try{
+            txtNombre.setText("");
+            cbMunicipio.setSelectedIndex(-1);
+            btnAgregar.setEnabled(false);  
+        }catch(NullPointerException e){
+            cbMunicipio.setSelectedIndex(-1);
+        }
     }
     /**
      * @param args the command line arguments

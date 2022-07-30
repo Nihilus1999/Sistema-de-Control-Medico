@@ -27,6 +27,7 @@ public class VentanaConsultarReporte extends javax.swing.JFrame {
     public VentanaConsultarReporte() {
         initComponents();
         cargarTabla();
+        limpiar();
     }
     
     public void setCoordinador(Coordinador miCoordinador) {
@@ -114,6 +115,7 @@ public class VentanaConsultarReporte extends javax.swing.JFrame {
         });
 
         btnConsultar.setText("CONSULTAR REPORTE");
+        btnConsultar.setEnabled(false);
         btnConsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConsultarActionPerformed(evt);
@@ -247,6 +249,7 @@ public class VentanaConsultarReporte extends javax.swing.JFrame {
             else
             {
                 btnBuscar.setEnabled(false);
+                btnConsultar.setEnabled(false);
             }
         }
     
@@ -261,12 +264,6 @@ public class VentanaConsultarReporte extends javax.swing.JFrame {
         reporte=miCoordinador.buscarReporte(Integer.parseInt(txtID.getText()), objectToInt(modelo.getValueAt(fila, 0)));
       
         miCoordinador.mostarTextoConsultarReporte(reporte);
-        
-        /*System.out.println("Fecha del Reporte="+reporte.getFechaRegistro().getDia()+"-"+reporte.getFechaRegistro().getMes()+"-"+reporte.getFechaRegistro().getAn());
-        System.out.println("Municipio="+reporte.getMunicipio().name());
-        System.out.println("Clinica="+reporte.getClinica());
-        System.out.println("Ambulancia="+reporte.getPlaca());
-        System.out.println("Descripcion="+reporte.getDescripcion());*/
 					
 
     }
@@ -287,10 +284,9 @@ public class VentanaConsultarReporte extends javax.swing.JFrame {
         if(listaReportes.size()>0){
             for(ReporteVO r:listaReportes){
                 modelo.insertRow(contador, new Object[]{});
-        
                 modelo.setValueAt(r.getIdReporte(), contador, 0);
                 modelo.setValueAt(r.getFechaRegistro().getDia()+"-"+r.getFechaRegistro().getMes()+"-"+r.getFechaRegistro().getAn(), contador, 1);
-                
+                btnConsultar.setEnabled(true);
             }
         }else{
             JOptionPane.showMessageDialog(null, "ESTE PACIENTE NO TIENE EMERGENCIAS", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -308,9 +304,13 @@ public class VentanaConsultarReporte extends javax.swing.JFrame {
     }
     
     public void limpiar(){
-        txtID.setText("");
-        lblNombre.setText("");
-        vaciarTabla();
+        try{
+            txtID.setText("");
+            lblNombre.setText("");
+            vaciarTabla();
+        }catch(NullPointerException e){
+            txtID.setText("");
+        }
     }
     
     

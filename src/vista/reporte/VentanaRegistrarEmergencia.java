@@ -30,6 +30,7 @@ public class VentanaRegistrarEmergencia extends javax.swing.JFrame {
      */
     public VentanaRegistrarEmergencia() {
         initComponents();
+        limpiar();
     }
     
     public void setCoordinador(Coordinador miCoordinador) {
@@ -303,6 +304,7 @@ public class VentanaRegistrarEmergencia extends javax.swing.JFrame {
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         this.miCoordinador.mostrarVentanaGestionReporte();
+        limpiar();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
@@ -351,7 +353,8 @@ public class VentanaRegistrarEmergencia extends javax.swing.JFrame {
                     String resp=miCoordinador.RegistrarReporte(reporte);
                     if(resp.equals("ok") && validarFechaRegistro()==true ){
                         JOptionPane.showMessageDialog(null, "REPORTE  AGREGADO EXISOTAMENTE");
-                        miCoordinador.mostrarVentanaGestionReporte();
+                        limpiar();
+                        btnRegistrarReporte.setEnabled(false);  
                     }else{
                         JOptionPane.showMessageDialog(null, "ERROR AGREGANDO EL REPORTE", "ERROR", JOptionPane.ERROR_MESSAGE);
                     }
@@ -423,7 +426,7 @@ public class VentanaRegistrarEmergencia extends javax.swing.JFrame {
         mesFR = Integer.parseInt(txtFRmes.getText());
         yearFR = Integer.parseInt(txtFRan.getText());
         
-        if(yearFR == 2022){
+        if(yearFR >=1930 && yearFR<=2030){
             if(mesFR == 1){
                if((diaFR > 0 && diaFR < 32)){
                    return true;
@@ -527,17 +530,24 @@ public class VentanaRegistrarEmergencia extends javax.swing.JFrame {
             }
             else
             {
-            btnRegistrarReporte.setEnabled(false);
+                btnRegistrarReporte.setEnabled(false);
+                btnRegistrarReporte.setEnabled(false);  
             }
         }
-    public void limpiar()
-    {
-        txtId.setText("");
-        txtFRdia.setText("");
-        txtFRmes.setText("");
-        txtFRan.setText("");
-        cbMunicipio.setSelectedIndex(-1);
-        btnRegistrarReporte.setEnabled(false);
+    public void limpiar(){
+        try{
+            txtId.setText("");
+            txtFRdia.setText("");
+            txtFRmes.setText("");
+            txtFRan.setText("");
+            txtPlaca.setText("");
+            txtDescripcion.setText("");
+            cbMunicipio.setSelectedIndex(-1);
+            cbClinicas.setSelectedIndex(-1);
+        }catch(NullPointerException e){
+            cbClinicas.setSelectedIndex(-1);
+        }
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
