@@ -52,7 +52,7 @@ public class VentanaEliminarReporte extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnEliminar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        txtId = new javax.swing.JTextField();
+        txtID = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaReportes = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
@@ -87,14 +87,14 @@ public class VentanaEliminarReporte extends javax.swing.JFrame {
 
         jLabel2.setText("INTRODUZCA ID DEL AFILIADO");
 
-        txtId.addActionListener(new java.awt.event.ActionListener() {
+        txtID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdActionPerformed(evt);
+                txtIDActionPerformed(evt);
             }
         });
-        txtId.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtID.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtIdKeyTyped(evt);
+                txtIDKeyTyped(evt);
             }
         });
 
@@ -156,7 +156,7 @@ public class VentanaEliminarReporte extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnBuscar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -178,7 +178,7 @@ public class VentanaEliminarReporte extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,20 +213,21 @@ public class VentanaEliminarReporte extends javax.swing.JFrame {
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         this.miCoordinador.mostrarVentanaGestionReporte();
+        limpiar();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         PacienteVO pacienteMod=new PacienteVO();
         PacienteDAO Pacientedao = new PacienteDAO();
-       pacienteMod=miCoordinador.buscarPaciente(Integer.parseInt(txtId.getText()));
+       pacienteMod=miCoordinador.buscarPaciente(Integer.parseInt(txtID.getText()));
        if(pacienteMod!=null){  
-            llenarTabla(Integer.parseInt(txtId.getText()));
+            llenarTabla(Integer.parseInt(txtID.getText()));
        }else{
            JOptionPane.showMessageDialog(null, "ESTE PACIENTE NO EXISTE", "ERROR", JOptionPane.ERROR_MESSAGE);
        }
        
          try {
-            pacienteMod = Pacientedao.LabeltxtPaciente(Integer.parseInt(txtId.getText()));
+            pacienteMod = Pacientedao.LabeltxtPaciente(Integer.parseInt(txtID.getText()));
             lblNombre.setText(pacienteMod.getNombre() + " " + pacienteMod.getApellido());
         } catch (SQLException ex) {
             Logger.getLogger(VentanaConsultarReporte.class.getName()).log(Level.SEVERE, null, ex);
@@ -252,20 +253,20 @@ public class VentanaEliminarReporte extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
+    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdActionPerformed
+    }//GEN-LAST:event_txtIDActionPerformed
 
-    private void txtIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyTyped
+    private void txtIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDKeyTyped
         if (evt.getKeyChar() < 48 || evt.getKeyChar() > 57){
             evt.consume();
         }        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdKeyTyped
+    }//GEN-LAST:event_txtIDKeyTyped
 
     public void modificarColumnaMayor(int columna, int fila){
        
         ReporteVO reporte=new ReporteVO();
-        reporte=miCoordinador.buscarReporte(Integer.parseInt(txtId.getText()), objectToInt(modelo.getValueAt(fila, 0)));
+        reporte=miCoordinador.buscarReporte(Integer.parseInt(txtID.getText()), objectToInt(modelo.getValueAt(fila, 0)));
         
         String resp=miCoordinador.eliminarReporte(reporte);
         //miCoordinador.mostrarTextoConsultarClinica(reporte.getDescripcion());
@@ -310,6 +311,20 @@ public class VentanaEliminarReporte extends javax.swing.JFrame {
         tablaReportes.setModel(modelo);
     }
     
+    public void vaciarTabla(){
+        ArrayList<PacienteVO> listaPacientes=miCoordinador.getListaPacientes();
+        modelo.setRowCount(0);
+        int contador=modelo.getRowCount();
+        for(int i = contador; i >0; i--){
+            modelo.removeRow(i);
+        }
+    }
+    
+    public void limpiar(){
+        txtID.setText("");
+        vaciarTabla();
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -327,6 +342,6 @@ public class VentanaEliminarReporte extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JTable tablaReportes;
-    private javax.swing.JTextField txtId;
+    private javax.swing.JTextField txtID;
     // End of variables declaration//GEN-END:variables
 }

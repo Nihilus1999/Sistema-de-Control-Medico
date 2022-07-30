@@ -143,6 +143,11 @@ public class VentanaAgregarClinica extends javax.swing.JFrame {
        //String aux=txtNombre.getText();
        ClinicaVO clinicaN=new ClinicaVO();
        clinicaN=miCoordinador.buscarClinica(txtNombre.getText(),cbMunicipio.getSelectedItem().toString());
+       
+       if(txtNombre.getText().equals("")){
+           JOptionPane.showMessageDialog(null, "ESTA CLINICA YA EXISTE", "ERROR", JOptionPane.ERROR_MESSAGE);
+       }
+       
        if(clinicaN!=null){
             JOptionPane.showMessageDialog(null, "ESTA CLINICA YA EXISTE", "ERROR", JOptionPane.ERROR_MESSAGE);
        }else{
