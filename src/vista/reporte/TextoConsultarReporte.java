@@ -58,11 +58,21 @@ public class TextoConsultarReporte extends javax.swing.JFrame {
         jLabel2.setText("ID DEL REPORTE");
 
         txtFecha.setEditable(false);
+        txtFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFechaActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel3.setText("FECHA DEL REPORTE");
 
         txtId.setEditable(false);
+        txtId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdKeyTyped(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel4.setText("CLINICA");
@@ -164,6 +174,16 @@ public class TextoConsultarReporte extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyTyped
+        if (evt.getKeyChar() < 48 || evt.getKeyChar() > 57){
+            evt.consume();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdKeyTyped
+
+    private void txtFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFechaActionPerformed
 
     public void actualizar(ReporteVO rep){
         txtId.setText(rep.getIdReporte()+"");

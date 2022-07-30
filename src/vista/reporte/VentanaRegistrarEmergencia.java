@@ -62,9 +62,12 @@ public class VentanaRegistrarEmergencia extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         txtFRdia = new javax.swing.JTextField();
         txtPlaca = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnRegistrarReporte = new javax.swing.JButton();
         txtFRmes = new javax.swing.JTextField();
         txtFRan = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -93,6 +96,14 @@ public class VentanaRegistrarEmergencia extends javax.swing.JFrame {
                 txtIdActionPerformed(evt);
             }
         });
+        txtId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtIdKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdKeyTyped(evt);
+            }
+        });
 
         cbMunicipio.setModel(new javax.swing.DefaultComboBoxModel<>(new MunicipioVO[] { MunicipioVO.BARUTA, MunicipioVO.CHACAO, MunicipioVO.HATILLO, MunicipioVO.LIBERTADOR, MunicipioVO.SUCRE }));
         cbMunicipio.addActionListener(new java.awt.event.ActionListener() {
@@ -103,6 +114,11 @@ public class VentanaRegistrarEmergencia extends javax.swing.JFrame {
 
         txtDescripcion.setColumns(20);
         txtDescripcion.setRows(5);
+        txtDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDescripcionKeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(txtDescripcion);
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
@@ -112,12 +128,55 @@ public class VentanaRegistrarEmergencia extends javax.swing.JFrame {
 
         jLabel9.setText("PLACA DE LA AMBULANCIA");
 
-        jButton1.setText("REGISTRAR REPORTE");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        txtFRdia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtFRdiaKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFRdiaKeyTyped(evt);
             }
         });
+
+        txtPlaca.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPlacaKeyReleased(evt);
+            }
+        });
+
+        btnRegistrarReporte.setText("REGISTRAR REPORTE");
+        btnRegistrarReporte.setEnabled(false);
+        btnRegistrarReporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarReporteActionPerformed(evt);
+            }
+        });
+
+        txtFRmes.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtFRmesKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFRmesKeyTyped(evt);
+            }
+        });
+
+        txtFRan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtFRanKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFRanKeyTyped(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel10.setText("dd");
+
+        jLabel11.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel11.setText("mm");
+
+        jLabel12.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel12.setText("yyyy");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -151,15 +210,24 @@ public class VentanaRegistrarEmergencia extends javax.swing.JFrame {
                                         .addComponent(jLabel6)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel8)))
-                                .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(txtFRdia, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtFRmes, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtFRan, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(txtFRdia, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtFRmes, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtFRan, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(30, 30, 30)
+                                        .addComponent(jLabel10)
+                                        .addGap(37, 37, 37)
+                                        .addComponent(jLabel11)
+                                        .addGap(37, 37, 37)
+                                        .addComponent(jLabel12))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(127, 127, 127)
                         .addComponent(jLabel7)))
@@ -172,7 +240,7 @@ public class VentanaRegistrarEmergencia extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnRegresar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnRegistrarReporte)
                 .addGap(55, 55, 55))
         );
         jPanel1Layout.setVerticalGroup(
@@ -194,8 +262,18 @@ public class VentanaRegistrarEmergencia extends javax.swing.JFrame {
                     .addComponent(cbClinicas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addComponent(jLabel7)
-                .addGap(14, 14, 14)
-                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel6))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel10)
+                                .addComponent(jLabel11)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
@@ -208,9 +286,9 @@ public class VentanaRegistrarEmergencia extends javax.swing.JFrame {
                     .addComponent(txtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(btnRegistrarReporte)
                     .addComponent(btnRegresar))
                 .addGap(26, 26, 26))
         );
@@ -248,7 +326,7 @@ public class VentanaRegistrarEmergencia extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cbMunicipioActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnRegistrarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarReporteActionPerformed
        PacienteVO pacienteReg=new PacienteVO();
        pacienteReg=miCoordinador.buscarPaciente2(Integer.parseInt(txtId.getText()));
        if(pacienteReg!=null){  
@@ -271,7 +349,7 @@ public class VentanaRegistrarEmergencia extends javax.swing.JFrame {
                     reporte.setPlaca(txtPlaca.getText());
                     
                     String resp=miCoordinador.RegistrarReporte(reporte);
-                    if(resp.equals("ok")){
+                    if(resp.equals("ok") && validarFechaRegistro()==true ){
                         JOptionPane.showMessageDialog(null, "REPORTE  AGREGADO EXISOTAMENTE");
                         miCoordinador.mostrarVentanaGestionReporte();
                     }else{
@@ -287,18 +365,190 @@ public class VentanaRegistrarEmergencia extends javax.swing.JFrame {
        }else{
            JOptionPane.showMessageDialog(null, "ESTE PACIENTE NO EXISTE", "ERROR", JOptionPane.ERROR_MESSAGE);
        }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnRegistrarReporteActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void txtIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyReleased
+       habilitarBoton();
+    }//GEN-LAST:event_txtIdKeyReleased
+
+    private void txtFRdiaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFRdiaKeyReleased
+      habilitarBoton();
+    }//GEN-LAST:event_txtFRdiaKeyReleased
+
+    private void txtFRmesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFRmesKeyReleased
+      habilitarBoton();
+    }//GEN-LAST:event_txtFRmesKeyReleased
+
+    private void txtFRanKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFRanKeyReleased
+     habilitarBoton();
+    }//GEN-LAST:event_txtFRanKeyReleased
+
+    private void txtPlacaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPlacaKeyReleased
+    habilitarBoton();
+    }//GEN-LAST:event_txtPlacaKeyReleased
+
+    private void txtDescripcionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionKeyReleased
+    habilitarBoton();
+    }//GEN-LAST:event_txtDescripcionKeyReleased
+
+    private void txtIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyTyped
+        if (evt.getKeyChar() < 48 || evt.getKeyChar() > 57){
+            evt.consume();
+        }     // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdKeyTyped
+
+    private void txtFRdiaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFRdiaKeyTyped
+        if (evt.getKeyChar() < 48 || evt.getKeyChar() > 57){
+            evt.consume();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFRdiaKeyTyped
+
+    private void txtFRmesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFRmesKeyTyped
+        if (evt.getKeyChar() < 48 || evt.getKeyChar() > 57){
+            evt.consume();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFRmesKeyTyped
+
+    private void txtFRanKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFRanKeyTyped
+        if (evt.getKeyChar() < 48 || evt.getKeyChar() > 57){
+            evt.consume();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFRanKeyTyped
+       
+    public boolean validarFechaRegistro(){
+        int diaFR, mesFR, yearFR;
+        
+        
+        diaFR = Integer.parseInt(txtFRdia.getText());
+        mesFR = Integer.parseInt(txtFRmes.getText());
+        yearFR = Integer.parseInt(txtFRan.getText());
+        
+        if(yearFR == 2022){
+            if(mesFR == 1){
+               if((diaFR > 0 && diaFR < 32)){
+                   return true;
+               } else{
+                   return false;
+               }
+            }
+            else if(mesFR == 2){
+                if(diaFR> 0 && diaFR < 30){
+                   return true;
+               } else{
+                   return false;
+               }
+            }
+            else if(mesFR == 3){
+               if((diaFR > 0 && diaFR < 32)){
+                   return true;
+               } else{
+                   return false;
+               } 
+            }
+            else if(mesFR == 4){
+               if(diaFR > 0 && diaFR < 31){
+                   return true;
+               } else{
+                   return false;
+               } 
+            }
+            else if(mesFR == 5){
+               if(diaFR > 0 && diaFR < 32){
+                   return true;
+               } else{
+                   return false;
+               } 
+            }
+            else if(mesFR == 6){
+               if(diaFR> 0 && diaFR < 31){
+                   return true;
+               } else{
+                   return false;
+               } 
+            }
+            else if(mesFR == 7){
+               if(diaFR > 0 && diaFR < 32){
+                   return true;
+               } else{
+                   return false;
+               } 
+            }
+            else if(mesFR == 8){
+               if(diaFR > 0 && diaFR < 32){
+                   return true;
+               } else{
+                   return false;
+               } 
+            }
+            else if(mesFR == 9){
+               if(diaFR> 0 && diaFR < 31){
+                   return true;
+               } else{
+                   return false;
+               } 
+            }
+            else if(mesFR == 10){
+               if(diaFR > 0 && diaFR < 32){
+                   return true;
+               } else{
+                   return false;
+               } 
+            }
+            else if(mesFR == 11){
+               if(diaFR > 0 && diaFR < 31){
+                   return true;
+               } else{
+                   return false;
+               } 
+            }
+            else if(mesFR == 12){
+               if(diaFR > 0 && diaFR< 32){
+                   return true;
+               } else{
+                   return false;
+               } 
+            }
+            else{
+              return false;  
+            }
+            
+        } 
+        else{
+           return false;
+        }
+        
+    }
+    public void habilitarBoton()
+       {
+            if (!txtId.getText().isEmpty() && !txtFRdia.getText().isEmpty() && !txtFRmes.getText().isEmpty()
+                    && !txtFRan.getText().isEmpty() && !txtPlaca.getText().isEmpty() && !txtDescripcion.getText().isEmpty())
+            {
+                btnRegistrarReporte.setEnabled(true);
+            }
+            else
+            {
+            btnRegistrarReporte.setEnabled(false);
+            }
+        }
+    public void limpiar()
+    {
+        txtId.setText("");
+        txtFRdia.setText("");
+        txtFRmes.setText("");
+        txtFRan.setText("");
+        cbMunicipio.setSelectedIndex(-1);
+        btnRegistrarReporte.setEnabled(false);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRegistrarReporte;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JComboBox<String> cbClinicas;
     public javax.swing.JComboBox<MunicipioVO> cbMunicipio;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

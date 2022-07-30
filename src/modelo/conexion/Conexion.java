@@ -15,7 +15,7 @@ import java.sql.SQLException;
 import java.sql.SQLSyntaxErrorException;
 import com.mysql.cj.jdbc.exceptions.CommunicationsException;
 public class Conexion {
-    private String nombreBd="bd_proyecto";
+    private String nombreBd="bd_victor";
     private String usuario="root";
     private String password="";
     private String url="jdbc:mysql://localhost:3306/"+nombreBd+"?useUnicode=true&use"

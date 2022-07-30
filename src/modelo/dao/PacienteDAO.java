@@ -4,12 +4,14 @@
  */
 package modelo.dao;
 
+import com.mysql.cj.protocol.Resultset;
 import controlador.Coordinador;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import modelo.conexion.Conexion;
 import modelo.vo.EstadoVO;
@@ -436,4 +438,44 @@ public class PacienteDAO {
         this.miCoordinador=miCoordinador;
     }
     
+    
+    
+    
+    public PacienteVO LabeltxtPaciente(int id) throws SQLException
+    {
+	PacienteVO miPaciente=null;
+		
+	if (!conectar().equals("conectado")) {
+		return miPaciente;
+	}
+		
+	ResultSet result=null;
+			
+	String consulta="SELECT nombre,apellido"
+		+ " FROM pacientes where id= ? ";
+		
+	try {
+		preStatement=connection.prepareStatement(consulta);
+		preStatement.setInt(1, id);
+			
+		result=preStatement.executeQuery();
+		if(result.next()){
+			miPaciente=new PacienteVO();
+		
+			//miPaciente.setId(result.getInt("id"));
+			miPaciente.setNombre(result.getString("nombre"));
+			miPaciente.setApellido(result.getString("apellido"));
+				
+		}	
+	} catch (SQLException e) {
+			//System.out.println("Error en la consulta de la persona: "+e.getMessage());
+		miPaciente=null;
+	}finally {
+		result.close();
+		preStatement.close();
+		connection.close();
+		miConexion.desconectar();
+	}
+		return miPaciente;
+    }
 }
