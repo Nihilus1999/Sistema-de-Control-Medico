@@ -40,7 +40,6 @@ public class VentanaGestionPaciente extends javax.swing.JFrame {
         titulo = new javax.swing.JLabel();
         titulo2 = new javax.swing.JLabel();
         btnModificarEstado = new javax.swing.JButton();
-        btnAgregarHistorial = new javax.swing.JButton();
         btnConsultarHistorial = new javax.swing.JButton();
         fondoPaciente = new javax.swing.JLabel();
 
@@ -86,8 +85,6 @@ public class VentanaGestionPaciente extends javax.swing.JFrame {
             }
         });
 
-        btnAgregarHistorial.setText("AGREGAR HISTORIAL DEL PACIENTE");
-
         btnConsultarHistorial.setText("CONSULTAR HISTORIAL DEL PACIENTE");
         btnConsultarHistorial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,12 +108,11 @@ public class VentanaGestionPaciente extends javax.swing.JFrame {
                             .addComponent(btnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnAgregar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnModificarEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnAgregarHistorial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnConsultarHistorial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(90, 90, 90)
+                        .addGap(98, 98, 98)
                         .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,19 +121,17 @@ public class VentanaGestionPaciente extends javax.swing.JFrame {
                 .addComponent(titulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(titulo2)
-                .addGap(45, 45, 45)
+                .addGap(49, 49, 49)
                 .addComponent(btnAgregar)
                 .addGap(18, 18, 18)
                 .addComponent(btnModificar)
                 .addGap(18, 18, 18)
                 .addComponent(btnModificarEstado)
                 .addGap(18, 18, 18)
-                .addComponent(btnAgregarHistorial)
-                .addGap(18, 18, 18)
                 .addComponent(btnConsultarHistorial)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addComponent(btnRegresar)
-                .addContainerGap())
+                .addGap(27, 27, 27))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 330, 400));
@@ -177,7 +171,6 @@ public class VentanaGestionPaciente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnAgregarHistorial;
     private javax.swing.JButton btnConsultarHistorial;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnModificarEstado;

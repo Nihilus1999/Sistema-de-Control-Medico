@@ -5,6 +5,7 @@
 package vista.paciente;
 
 import controlador.Coordinador;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -90,9 +91,9 @@ public class VentanaConsultarHistorial extends javax.swing.JFrame {
 
         jLabel3.setText("INTRODUZCA ID DEL AFILIADO");
 
-        txtID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIDActionPerformed(evt);
+        txtID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIDKeyTyped(evt);
             }
         });
 
@@ -179,32 +180,42 @@ public class VentanaConsultarHistorial extends javax.swing.JFrame {
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         this.miCoordinador.mostrarVentanaGestionPaciente();
+        limpiar();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
-    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIDActionPerformed
-
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        PacienteVO pacienteMod=new PacienteVO();
-       pacienteMod=miCoordinador.buscarPaciente(Integer.parseInt(txtID.getText()));
-       if(pacienteMod!=null){  
+       PacienteVO pacienteMod=new PacienteVO();
+       try{
+          pacienteMod=miCoordinador.buscarPaciente(Integer.parseInt(txtID.getText()));
+          if(pacienteMod!=null){  
             llenarTabla(Integer.parseInt(txtID.getText()));
-       }else{
+          }else{
            JOptionPane.showMessageDialog(null, "ESTE PACIENTE NO EXISTE", "ERROR", JOptionPane.ERROR_MESSAGE);
+          }
+       }catch(NumberFormatException e){
+           JOptionPane.showMessageDialog(null, "DEBE ESCRIBIR PRIMERO EL ID DEL PACIENTE", "ERROR", JOptionPane.ERROR_MESSAGE);
        }
+       
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDescripcionActionPerformed
        int fila, columna;
         fila=tablaHistorial.getSelectedRow();
         columna=tablaHistorial.getSelectedColumn();
-        //System.out.print(fila+"-"+columna);
-        if((fila>=0) || (columna>=0))     
-            modificarColumnaMayor(columna,fila);
-        else
+        if(columna >=0){
+            buscarReporte(columna, fila);
+        }     
+        else{
             JOptionPane.showMessageDialog(null, "DEBE SELECCIONAR UNA EMERGENCIA", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+            
     }//GEN-LAST:event_btnDescripcionActionPerformed
+
+    private void txtIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDKeyTyped
+      if (evt.getKeyChar() < 48 || evt.getKeyChar() > 57){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtIDKeyTyped
 
     
     public static int objectToInt(Object obj){
@@ -212,7 +223,7 @@ public class VentanaConsultarHistorial extends javax.swing.JFrame {
         return x;
     }
 
-    public void modificarColumnaMayor(int columna, int fila){
+    public void buscarReporte(int columna, int fila){
        
         ReporteVO reporte=new ReporteVO();
         reporte=miCoordinador.buscarReporte(Integer.parseInt(txtID.getText()), objectToInt(modelo.getValueAt(fila, 0)));
@@ -239,7 +250,6 @@ public class VentanaConsultarHistorial extends javax.swing.JFrame {
         if(listaReportes.size()>0){
             for(ReporteVO r:listaReportes){
                 modelo.insertRow(contador, new Object[]{});
-        
                 modelo.setValueAt(r.getIdReporte(), contador, 0);
                 modelo.setValueAt(r.getFechaRegistro().getDia()+"-"+r.getFechaRegistro().getMes()+"-"+r.getFechaRegistro().getAn(), contador, 1);
                 modelo.setValueAt(r.getMunicipio().name(), contador, 2);
@@ -250,6 +260,20 @@ public class VentanaConsultarHistorial extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "ESTE PACIENTE NO TIENE EMERGENCIAS", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
         
+    }
+    
+    public void vaciarTabla(){
+        ArrayList<PacienteVO> listaPacientes=miCoordinador.getListaPacientes();
+        modelo.setRowCount(0);
+        int contador=modelo.getRowCount();
+        for(int i = contador; i >0; i--){
+            modelo.removeRow(i);
+        }
+    }
+    
+    public void limpiar(){
+        txtID.setText("");
+        vaciarTabla();
     }
     
     

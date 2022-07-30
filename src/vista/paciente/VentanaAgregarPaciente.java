@@ -636,7 +636,6 @@ public class VentanaAgregarPaciente extends javax.swing.JFrame{
                 
                 }
                 else{
-                
                     JOptionPane.showMessageDialog(null, "NO SE PUDO REGISTRAR","ADVERTENCIA",JOptionPane.WARNING_MESSAGE);
                 }
             }else{
@@ -710,7 +709,7 @@ public class VentanaAgregarPaciente extends javax.swing.JFrame{
     }//GEN-LAST:event_txtTelefonoKeyTyped
 
     private void txtCorreoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoKeyTyped
-        
+
         habilitarBoton();
     }//GEN-LAST:event_txtCorreoKeyTyped
 

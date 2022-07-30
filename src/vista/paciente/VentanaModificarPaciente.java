@@ -41,39 +41,23 @@ public class VentanaModificarPaciente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnModi = new javax.swing.JButton();
-        botonRegresar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         txtCedula = new javax.swing.JTextField();
         txtNumeroAfiliacion = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         btnBuscarCedula = new javax.swing.JButton();
         btnBuscarNum = new javax.swing.JButton();
+        btnModi = new javax.swing.JButton();
+        botonRegresar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaDatosPaciente = new javax.swing.JTable();
-        fondoModificarPaciente = new javax.swing.JLabel();
         titulo = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnModi.setText("MODIFICAR");
-        btnModi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModiActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnModi, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 250, 120, -1));
-
-        botonRegresar.setText("REGRESAR");
-        botonRegresar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonRegresarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(botonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 620, -1, -1));
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
 
         txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -93,6 +77,7 @@ public class VentanaModificarPaciente extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("BUSQUEDA POR FILTRO");
 
         btnBuscarCedula.setText("BUSCAR CEDULA");
@@ -109,42 +94,67 @@ public class VentanaModificarPaciente extends javax.swing.JFrame {
             }
         });
 
+        btnModi.setText("MODIFICAR");
+        btnModi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModiActionPerformed(evt);
+            }
+        });
+
+        botonRegresar.setText("REGRESAR");
+        botonRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonRegresarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(195, 195, 195)
-                .addComponent(jLabel2)
-                .addContainerGap(198, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtCedula)
-                    .addComponent(btnBuscarCedula, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(127, 127, 127)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnBuscarCedula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtCedula, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtNumeroAfiliacion)
+                            .addComponent(btnBuscarNum, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(txtNumeroAfiliacion)
-                    .addComponent(btnBuscarNum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(32, 32, 32))
+                    .addComponent(botonRegresar, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                    .addComponent(btnModi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(36, 36, 36))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jLabel2)
-                .addGap(45, 45, 45)
+                .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNumeroAfiliacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBuscarCedula)
                     .addComponent(btnBuscarNum))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnModi)
+                .addGap(18, 18, 18)
+                .addComponent(botonRegresar)
+                .addGap(36, 36, 36))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, 610, 200));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 660, 150));
 
         tablaDatosPaciente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -159,15 +169,15 @@ public class VentanaModificarPaciente extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tablaDatosPaciente);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 970, 150));
-
-        fondoModificarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/FondoModificarPaciente.jpg"))); // NOI18N
-        getContentPane().add(fondoModificarPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(-3, 0, -1, -1));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 970, 210));
 
         titulo.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        titulo.setForeground(new java.awt.Color(255, 255, 255));
-        titulo.setText("MENU - CONSULTA DE PACIENTE");
-        getContentPane().add(titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
+        titulo.setForeground(new java.awt.Color(0, 0, 0));
+        titulo.setText("MENU - MODIFICAR DATOS DEL PACIENTE AFILIADO");
+        getContentPane().add(titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/Imagenes/fondoModificarPaciente.jpg"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 990, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -215,8 +225,8 @@ public class VentanaModificarPaciente extends javax.swing.JFrame {
         fila=tablaDatosPaciente.getSelectedRow();
         columna=tablaDatosPaciente.getSelectedColumn();
         
-        if((fila>0) || (columna>0))     
-            modificarColumnaMayor(columna,fila);
+        if(columna>=0  && fila >=0)     
+            modificarTabla(columna,fila);
         else
             JOptionPane.showMessageDialog(null, "DEBE SELECCIONAR UN PACIENTE", "ERROR", JOptionPane.ERROR_MESSAGE);
         
@@ -247,18 +257,18 @@ public class VentanaModificarPaciente extends javax.swing.JFrame {
        
     }//GEN-LAST:event_btnBuscarNumActionPerformed
 
-    public void modificarColumnaMayor(int columna, int fila){
+    public void modificarTabla(int columna, int fila){
         PacienteVO pacienteMod=new PacienteVO();
         pacienteMod=miCoordinador.buscarPaciente(objectToInt(modelo.getValueAt(fila, 0)));
         
         if(columna == 0){
-           
                JOptionPane.showMessageDialog(null,"NO PUEDE CAMBIAR EL NUMERO DE AFILIACION","ERROR", JOptionPane.ERROR_MESSAGE);
         }
         if(columna == 1){
             try{
                 String nombre = JOptionPane.showInputDialog(null,"Introduzca el nombre nuevamente");
                 pacienteMod.setNombre(nombre);
+                JOptionPane.showMessageDialog(null, "PACIENTE MODIFICADO EXISOTAMENTE");
               
             }
             catch(NullPointerException NE){
@@ -267,17 +277,19 @@ public class VentanaModificarPaciente extends javax.swing.JFrame {
             
         }if(columna == 2){
             try{
-           
-            String apellido = JOptionPane.showInputDialog(null,"Introduzca el apellido nuevamente");
-            pacienteMod.setApellido(apellido);
+                String apellido = JOptionPane.showInputDialog(null,"Introduzca el apellido nuevamente");
+                pacienteMod.setApellido(apellido);
+                JOptionPane.showMessageDialog(null, "PACIENTE MODIFICADO EXISOTAMENTE");
+            
             }catch(NullPointerException NE){
             
             }
             
         }if(columna == 3){
             try{
-             String cedula = JOptionPane.showInputDialog(null,"Introduzca el cedula nuevamente");
-             pacienteMod.setCedula(cedula);
+                String cedula = JOptionPane.showInputDialog(null,"Introduzca el cedula nuevamente");
+                pacienteMod.setCedula(cedula);
+                JOptionPane.showMessageDialog(null, "PACIENTE MODIFICADO EXISOTAMENTE");
             }
             catch(NumberFormatException ex){
                 JOptionPane.showMessageDialog(null,"Error, no se pueden escribir caracteres en esta opción");
@@ -292,6 +304,7 @@ public class VentanaModificarPaciente extends javax.swing.JFrame {
                             + "1. MASCULINO\n"
                             + "2. FEMENINO\n"
                     ));
+                    
 
                 }
                 catch(NumberFormatException ex){
@@ -303,7 +316,8 @@ public class VentanaModificarPaciente extends javax.swing.JFrame {
                 pacienteMod.setGenero(GeneroVO.MASCULINO);
             else
                 pacienteMod.setGenero(GeneroVO.FEMENINO);
-             System.out.println(pacienteMod.getGenero().name());  
+            JOptionPane.showMessageDialog(null, "PACIENTE MODIFICADO EXISOTAMENTE");
+            
         }if(columna == 5){
             int tipos=0;
             while((tipos<=0) || (tipos>=9)){
@@ -352,6 +366,7 @@ public class VentanaModificarPaciente extends javax.swing.JFrame {
                     }
                 }
             }
+            JOptionPane.showMessageDialog(null, "PACIENTE MODIFICADO EXISOTAMENTE");
                 
         }if(columna==6){
             int dia=-1,mes=-1,an=-1;
@@ -363,7 +378,8 @@ public class VentanaModificarPaciente extends javax.swing.JFrame {
                 
                 FechaVO fechaNac=new FechaVO();
                 fechaNac.setDia(dia); fechaNac.setMes(mes); fechaNac.setAn(an);
-                pacienteMod.setFechaNacimiento(fechaNac); 
+                pacienteMod.setFechaNacimiento(fechaNac);
+                JOptionPane.showMessageDialog(null, "PACIENTE MODIFICADO EXISOTAMENTE");
             }
             catch(NullPointerException NE){
                  JOptionPane.showMessageDialog(null,"Error, no puede escribir caracteres! ");
@@ -385,7 +401,8 @@ public class VentanaModificarPaciente extends javax.swing.JFrame {
                 
                 FechaVO fechaReg=new FechaVO();
                 fechaReg.setDia(dia); fechaReg.setMes(mes); fechaReg.setAn(an);
-                pacienteMod.setFechaRegistro(fechaReg); 
+                pacienteMod.setFechaRegistro(fechaReg);
+                JOptionPane.showMessageDialog(null, "PACIENTE MODIFICADO EXISOTAMENTE");
             }
             catch(NullPointerException NE){
                  JOptionPane.showMessageDialog(null,"Error, no puede escribir caracteres! ");
@@ -424,11 +441,12 @@ public class VentanaModificarPaciente extends javax.swing.JFrame {
                     }
                 }
             }
+            JOptionPane.showMessageDialog(null, "PACIENTE MODIFICADO EXISOTAMENTE");
         }if(columna==10){
             try{
                 String correo = JOptionPane.showInputDialog(null,"Introduzca el correo nuevamente");
                 pacienteMod.setCorreo(correo);
-              
+                JOptionPane.showMessageDialog(null, "PACIENTE MODIFICADO EXISOTAMENTE");
             }
             catch(NullPointerException NE){
             
@@ -442,8 +460,6 @@ public class VentanaModificarPaciente extends javax.swing.JFrame {
                 llenarTabla();
             else
                 llenarTabla(pacienteMod);
-            JOptionPane.showMessageDialog(null, "PACIENTE MODIFICADO EXISOTAMENTE");
-           
 	}else{
             System.out.println(resp);
             JOptionPane.showMessageDialog(null, "NO SE PUDO MODIFICAR","ADVERTENCIA",JOptionPane.WARNING_MESSAGE);
@@ -474,7 +490,7 @@ public class VentanaModificarPaciente extends javax.swing.JFrame {
             modelo.setValueAt(p.obtenerTipoCadena(p.getTipoSangre()), contador, 5);
             modelo.setValueAt(p.getFechaNacimiento().getDia()+"-"+p.getFechaNacimiento().getMes()+"-"+p.getFechaNacimiento().getAn(), contador, 6);
             modelo.setValueAt(p.getNumeroTelefono(), contador, 7);
-           modelo.setValueAt(p.getFechaRegistro().getDia()+"-"+p.getFechaRegistro().getMes()+"-"+p.getFechaRegistro().getAn(), contador, 8);
+            modelo.setValueAt(p.getFechaRegistro().getDia()+"-"+p.getFechaRegistro().getMes()+"-"+p.getFechaRegistro().getAn(), contador, 8);
             modelo.setValueAt(p.getMunicipio().name(), contador, 9);
             modelo.setValueAt(p.getCorreo(), contador, 10);
         
@@ -494,7 +510,7 @@ public class VentanaModificarPaciente extends javax.swing.JFrame {
             modelo.setValueAt(p.obtenerTipoCadena(p.getTipoSangre()), contador, 5);
             modelo.setValueAt(p.getFechaNacimiento().getDia()+"-"+p.getFechaNacimiento().getMes()+"-"+p.getFechaNacimiento().getAn(), contador, 6);
             modelo.setValueAt(p.getNumeroTelefono(), contador, 7);
-           modelo.setValueAt(p.getFechaRegistro().getDia()+"-"+p.getFechaRegistro().getMes()+"-"+p.getFechaRegistro().getAn(), contador, 8);
+            modelo.setValueAt(p.getFechaRegistro().getDia()+"-"+p.getFechaRegistro().getMes()+"-"+p.getFechaRegistro().getAn(), contador, 8);
             modelo.setValueAt(p.getMunicipio().name(), contador, 9);
             modelo.setValueAt(p.getCorreo(), contador, 10);
         }
@@ -517,7 +533,7 @@ public class VentanaModificarPaciente extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscarCedula;
     private javax.swing.JButton btnBuscarNum;
     private javax.swing.JButton btnModi;
-    private javax.swing.JLabel fondoModificarPaciente;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;

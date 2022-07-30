@@ -121,12 +121,17 @@ public class VentanaCambiarEstadoPaciente extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         PacienteVO pacienteMod=new PacienteVO();
-       pacienteMod=miCoordinador.buscarPaciente2(Integer.parseInt(txtNumeroAfiliacion.getText()));
-       if(pacienteMod!=null){  
-            llenarTabla(pacienteMod);
-       }else{
-           JOptionPane.showMessageDialog(null, "ESTE PACIENTE NO EXISTE", "ERROR", JOptionPane.ERROR_MESSAGE);
+       try{
+           pacienteMod=miCoordinador.buscarPaciente2(Integer.parseInt(txtNumeroAfiliacion.getText()));
+           if(pacienteMod!=null){  
+                llenarTabla(pacienteMod);
+            }else{
+                JOptionPane.showMessageDialog(null, "ESTE PACIENTE NO EXISTE", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+       }catch(NumberFormatException e){
+          JOptionPane.showMessageDialog(null, "DEBE ESCRIBIR PRIMERO EL ID DEL PACIENTE", "ERROR", JOptionPane.ERROR_MESSAGE); 
        }
+       
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void txtNumeroAfiliacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroAfiliacionKeyTyped
