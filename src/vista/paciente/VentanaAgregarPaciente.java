@@ -280,6 +280,7 @@ public class VentanaAgregarPaciente extends javax.swing.JFrame{
         cbTipoSangre.setSelectedIndex(-1);
         cbGenero.setSelectedIndex(-1);
         cbMunicipio.setSelectedIndex(-1);
+        btnGuardar.setEnabled(false);
     }
     
     @SuppressWarnings("unchecked")
@@ -568,6 +569,7 @@ public class VentanaAgregarPaciente extends javax.swing.JFrame{
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 350, 470));
 
         btnGuardar.setText("GUARDAR PACIENTE");
+        btnGuardar.setEnabled(false);
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
@@ -628,7 +630,7 @@ public class VentanaAgregarPaciente extends javax.swing.JFrame{
                 if ((resp.equals("ok") && (validarFechaNacimiento()==true) && (validarFechaRegistro()==true) && (validarCorreo(txtCorreo.getText())==true))){
                
                     JOptionPane.showMessageDialog(null, "PACIENTE AGREGADO EXISOTAMENTE");
-                    miCoordinador.mostrarVentanaGestionPaciente();
+                    limpiar();
                     //limpiarTXT();
                 
                 }else if((validarFechaNacimiento() == false) || (validarFechaRegistro() == false)){
@@ -655,6 +657,7 @@ public class VentanaAgregarPaciente extends javax.swing.JFrame{
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         miCoordinador.mostrarVentanaGestionPaciente();
+        limpiar();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped

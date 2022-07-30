@@ -27,10 +27,12 @@ public class VentanaGestionInventario extends javax.swing.JFrame {
     public VentanaGestionInventario() {
         initComponents();
         cargarTabla();
+        limpiar();
     }
     
     public void setCoordinador(Coordinador miCoordinador) {
            this.miCoordinador=miCoordinador;
+           
        }
 
     /**
@@ -48,8 +50,8 @@ public class VentanaGestionInventario extends javax.swing.JFrame {
         tablaDatos = new javax.swing.JTable();
         titulo = new javax.swing.JLabel();
         txtPlaca = new javax.swing.JTextField();
-        botonAnadir = new javax.swing.JButton();
-        botonQuitar = new javax.swing.JButton();
+        btnAgregar = new javax.swing.JButton();
+        btnQuitar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         fondoInventario = new javax.swing.JLabel();
@@ -98,17 +100,17 @@ public class VentanaGestionInventario extends javax.swing.JFrame {
             }
         });
 
-        botonAnadir.setText("+");
-        botonAnadir.addActionListener(new java.awt.event.ActionListener() {
+        btnAgregar.setText("+");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonAnadirActionPerformed(evt);
+                btnAgregarActionPerformed(evt);
             }
         });
 
-        botonQuitar.setText("-");
-        botonQuitar.addActionListener(new java.awt.event.ActionListener() {
+        btnQuitar.setText("-");
+        btnQuitar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonQuitarActionPerformed(evt);
+                btnQuitarActionPerformed(evt);
             }
         });
 
@@ -133,9 +135,9 @@ public class VentanaGestionInventario extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(botonAnadir, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(botonQuitar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnQuitar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,8 +172,8 @@ public class VentanaGestionInventario extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonAnadir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonQuitar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnQuitar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addComponent(btnRegresar)
                 .addContainerGap())
@@ -187,6 +189,7 @@ public class VentanaGestionInventario extends javax.swing.JFrame {
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         this.miCoordinador.mostrarVentanaMenuPrincipal();
+        limpiar();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void txtPlacaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPlacaKeyTyped
@@ -204,7 +207,7 @@ public class VentanaGestionInventario extends javax.swing.JFrame {
         llenarTabla(txtPlaca.getText());
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void botonAnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAnadirActionPerformed
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
        int fila, columna;
         fila=tablaDatos.getSelectedRow();
         columna=tablaDatos.getSelectedColumn();
@@ -212,9 +215,9 @@ public class VentanaGestionInventario extends javax.swing.JFrame {
             modificarColumnaMayor(columna,fila,1);
         else
             JOptionPane.showMessageDialog(null, "DEBE SELECCIONAR UN MATERIAL", "ERROR", JOptionPane.ERROR_MESSAGE);
-    }//GEN-LAST:event_botonAnadirActionPerformed
+    }//GEN-LAST:event_btnAgregarActionPerformed
 
-    private void botonQuitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonQuitarActionPerformed
+    private void btnQuitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitarActionPerformed
         int fila, columna;
         fila=tablaDatos.getSelectedRow();
         columna=tablaDatos.getSelectedColumn();
@@ -222,7 +225,7 @@ public class VentanaGestionInventario extends javax.swing.JFrame {
             modificarColumnaMayor(columna,fila,-1);
         else
             JOptionPane.showMessageDialog(null, "DEBE SELECCIONAR UN PACIENTE", "ERROR", JOptionPane.ERROR_MESSAGE);
-    }//GEN-LAST:event_botonQuitarActionPerformed
+    }//GEN-LAST:event_btnQuitarActionPerformed
 
     private void txtPlacaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPlacaKeyReleased
     habilitarBoton();        // TODO add your handling code here:
@@ -236,6 +239,8 @@ public class VentanaGestionInventario extends javax.swing.JFrame {
             else
             {
                 btnBuscar.setEnabled(false);
+                btnQuitar.setEnabled(false);
+                btnAgregar.setEnabled(false);
             }
         }
     public void cargarTabla(){
@@ -282,7 +287,16 @@ public class VentanaGestionInventario extends javax.swing.JFrame {
             modelo.setValueAt(m.getId(), contador, 0);
             modelo.setValueAt(m.getNombre(), contador, 1);
             modelo.setValueAt(m.getCantidad(), contador, 2);
+            btnAgregar.setEnabled(true);
+            btnQuitar.setEnabled(true);
         }
+    }
+      
+    public void limpiar(){
+        txtPlaca.setText("");
+        btnBuscar.setEnabled(false);
+        btnQuitar.setEnabled(false);
+        btnAgregar.setEnabled(false);
     }
     
     /**
@@ -291,9 +305,9 @@ public class VentanaGestionInventario extends javax.swing.JFrame {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton botonAnadir;
-    public javax.swing.JButton botonQuitar;
+    public javax.swing.JButton btnAgregar;
     public javax.swing.JButton btnBuscar;
+    public javax.swing.JButton btnQuitar;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel fondoInventario;
     private javax.swing.JPanel jPanel1;

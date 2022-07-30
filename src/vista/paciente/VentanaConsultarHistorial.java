@@ -113,6 +113,7 @@ public class VentanaConsultarHistorial extends javax.swing.JFrame {
         });
 
         btnDescripcion.setText("DESCRIPCION");
+        btnDescripcion.setEnabled(false);
         btnDescripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDescripcionActionPerformed(evt);
@@ -234,6 +235,7 @@ public void habilitarBoton()
             else
             {
                 btnBuscar.setEnabled(false);
+                btnDescripcion.setEnabled(false);
             }
         }
     
@@ -273,6 +275,7 @@ public void habilitarBoton()
                 modelo.setValueAt(r.getFechaRegistro().getDia()+"-"+r.getFechaRegistro().getMes()+"-"+r.getFechaRegistro().getAn(), contador, 1);
                 modelo.setValueAt(r.getMunicipio().name(), contador, 2);
                 modelo.setValueAt(r.getClinica(), contador, 3);
+                btnDescripcion.setEnabled(true);
 
             }
         }else{
@@ -294,6 +297,8 @@ public void habilitarBoton()
         try{
             txtID.setText("");
             vaciarTabla();
+            btnDescripcion.setEnabled(false);
+            btnBuscar.setEnabled(false);
         }catch(NullPointerException e){
             txtID.setText("");
         }
