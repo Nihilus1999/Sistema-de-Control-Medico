@@ -51,7 +51,7 @@ public class VentanaGestionInventario extends javax.swing.JFrame {
         botonAnadir = new javax.swing.JButton();
         botonQuitar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
-        botonBuscar = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
         fondoInventario = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
@@ -90,6 +90,9 @@ public class VentanaGestionInventario extends javax.swing.JFrame {
         titulo.setText("MENU - GESTIÓN DE INVENTARIO");
 
         txtPlaca.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPlacaKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtPlacaKeyTyped(evt);
             }
@@ -116,10 +119,11 @@ public class VentanaGestionInventario extends javax.swing.JFrame {
             }
         });
 
-        botonBuscar.setText("BUSCAR");
-        botonBuscar.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscar.setText("BUSCAR");
+        btnBuscar.setEnabled(false);
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonBuscarActionPerformed(evt);
+                btnBuscarActionPerformed(evt);
             }
         });
 
@@ -147,7 +151,7 @@ public class VentanaGestionInventario extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(142, 142, 142)
-                        .addComponent(botonBuscar))
+                        .addComponent(btnBuscar))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(75, 75, 75)
                         .addComponent(txtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -161,7 +165,7 @@ public class VentanaGestionInventario extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addComponent(txtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(botonBuscar)
+                .addComponent(btnBuscar)
                 .addGap(21, 21, 21)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -195,10 +199,10 @@ public class VentanaGestionInventario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtPlacaKeyTyped
 
-    private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
 
         llenarTabla(txtPlaca.getText());
-    }//GEN-LAST:event_botonBuscarActionPerformed
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void botonAnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAnadirActionPerformed
        int fila, columna;
@@ -220,6 +224,20 @@ public class VentanaGestionInventario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "DEBE SELECCIONAR UN PACIENTE", "ERROR", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_botonQuitarActionPerformed
 
+    private void txtPlacaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPlacaKeyReleased
+    habilitarBoton();        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPlacaKeyReleased
+    public void habilitarBoton()
+       {
+            if (!txtPlaca.getText().isEmpty())
+            {
+                btnBuscar.setEnabled(true);
+            }
+            else
+            {
+                btnBuscar.setEnabled(false);
+            }
+        }
     public void cargarTabla(){
         String datos[][]={};
         String columna[]={"ID","Material","Cantidad"};
@@ -274,8 +292,8 @@ public class VentanaGestionInventario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton botonAnadir;
-    public javax.swing.JButton botonBuscar;
     public javax.swing.JButton botonQuitar;
+    public javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel fondoInventario;
     private javax.swing.JPanel jPanel1;
