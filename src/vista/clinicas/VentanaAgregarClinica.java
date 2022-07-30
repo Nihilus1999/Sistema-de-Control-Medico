@@ -61,6 +61,7 @@ public class VentanaAgregarClinica extends javax.swing.JFrame {
         jLabel4.setText("MUNICIPIO DE LA CLINICA");
 
         btnAgregar.setText("AGREGAR CLINICA");
+        btnAgregar.setEnabled(false);
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarActionPerformed(evt);
@@ -71,6 +72,12 @@ public class VentanaAgregarClinica extends javax.swing.JFrame {
         btnRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegresarActionPerformed(evt);
+            }
+        });
+
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombreKeyReleased(evt);
             }
         });
 
@@ -165,7 +172,19 @@ public class VentanaAgregarClinica extends javax.swing.JFrame {
        
     }//GEN-LAST:event_btnAgregarActionPerformed
 
+    private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
+        habilitarBoton();// TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreKeyReleased
 
+    public void habilitarBoton()
+    {
+        if (!txtNombre.getText().isEmpty())
+        {
+        btnAgregar.setEnabled(true);
+        }
+        else btnAgregar.setEnabled(false);
+    
+    }
     /**
      * @param args the command line arguments
      */

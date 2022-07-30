@@ -92,6 +92,9 @@ public class VentanaConsultarHistorial extends javax.swing.JFrame {
         jLabel3.setText("INTRODUZCA ID DEL AFILIADO");
 
         txtID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtIDKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtIDKeyTyped(evt);
             }
@@ -101,6 +104,7 @@ public class VentanaConsultarHistorial extends javax.swing.JFrame {
         jLabel4.setText("HISTORIAL DEL AFILIADO");
 
         btnBuscar.setText("BUSCAR");
+        btnBuscar.setEnabled(false);
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
@@ -217,6 +221,20 @@ public class VentanaConsultarHistorial extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtIDKeyTyped
 
+    private void txtIDKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDKeyReleased
+     habilitarBoton();   // TODO add your handling code here:
+    }//GEN-LAST:event_txtIDKeyReleased
+public void habilitarBoton()
+       {
+            if (!txtID.getText().isEmpty())
+            {
+                btnBuscar.setEnabled(true);
+            }
+            else
+            {
+                btnBuscar.setEnabled(false);
+            }
+        }
     
     public static int objectToInt(Object obj){
         int x = Integer.parseInt(obj.toString());

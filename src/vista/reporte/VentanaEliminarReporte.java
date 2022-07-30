@@ -93,6 +93,9 @@ public class VentanaEliminarReporte extends javax.swing.JFrame {
             }
         });
         txtID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtIDKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtIDKeyTyped(evt);
             }
@@ -121,9 +124,15 @@ public class VentanaEliminarReporte extends javax.swing.JFrame {
         jLabel3.setText("REPORTES DEL AFILIADO");
 
         btnBuscar.setText("BUSCAR");
+        btnBuscar.setEnabled(false);
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
+            }
+        });
+        btnBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                btnBuscarKeyTyped(evt);
             }
         });
 
@@ -260,9 +269,27 @@ public class VentanaEliminarReporte extends javax.swing.JFrame {
     private void txtIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDKeyTyped
         if (evt.getKeyChar() < 48 || evt.getKeyChar() > 57){
             evt.consume();
-        }        // TODO add your handling code here:
+        }   
     }//GEN-LAST:event_txtIDKeyTyped
 
+    private void btnBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnBuscarKeyTyped
+            // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarKeyTyped
+
+    private void txtIDKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDKeyReleased
+    habilitarBoton();      // TODO add your handling code here:
+    }//GEN-LAST:event_txtIDKeyReleased
+public void habilitarBoton()
+       {
+            if (!txtID.getText().isEmpty())
+            {
+                btnBuscar.setEnabled(true);
+            }
+            else
+            {
+                btnBuscar.setEnabled(false);
+            }
+        }
     public void modificarColumnaMayor(int columna, int fila){
        
         ReporteVO reporte=new ReporteVO();

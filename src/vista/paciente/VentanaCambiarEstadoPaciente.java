@@ -60,6 +60,9 @@ public class VentanaCambiarEstadoPaciente extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtNumeroAfiliacion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNumeroAfiliacionKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNumeroAfiliacionKeyTyped(evt);
             }
@@ -102,6 +105,7 @@ public class VentanaCambiarEstadoPaciente extends javax.swing.JFrame {
         getContentPane().add(btnEstatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 450, 220, -1));
 
         btnBuscar.setText("BUSCAR POR ID");
+        btnBuscar.setEnabled(false);
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
@@ -156,6 +160,21 @@ public class VentanaCambiarEstadoPaciente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "DEBE SELECCIONAR UN PACIENTE", "ERROR", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_btnEstatusActionPerformed
 
+    private void txtNumeroAfiliacionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroAfiliacionKeyReleased
+    habilitarBoton();        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNumeroAfiliacionKeyReleased
+public void habilitarBoton()
+       {
+            if (!txtNumeroAfiliacion.getText().isEmpty())
+            {
+                btnBuscar.setEnabled(true);
+            }
+            else
+            {
+                btnBuscar.setEnabled(false);
+            }
+        }
+    
     public static int objectToInt(Object obj){
         int x = Integer.parseInt(obj.toString());
         return x;

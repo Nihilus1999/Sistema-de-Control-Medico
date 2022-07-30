@@ -60,6 +60,9 @@ public class VentanaModificarPaciente extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
 
         txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCedulaKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCedulaKeyTyped(evt);
             }
@@ -71,16 +74,19 @@ public class VentanaModificarPaciente extends javax.swing.JFrame {
             }
         });
         txtNumeroAfiliacion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNumeroAfiliacionKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNumeroAfiliacionKeyTyped(evt);
             }
         });
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("BUSQUEDA POR FILTRO");
 
         btnBuscarCedula.setText("BUSCAR CEDULA");
+        btnBuscarCedula.setEnabled(false);
         btnBuscarCedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarCedulaActionPerformed(evt);
@@ -88,6 +94,7 @@ public class VentanaModificarPaciente extends javax.swing.JFrame {
         });
 
         btnBuscarNum.setText("BUSCAR NUMERO DE AFILIACION");
+        btnBuscarNum.setEnabled(false);
         btnBuscarNum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarNumActionPerformed(evt);
@@ -172,7 +179,6 @@ public class VentanaModificarPaciente extends javax.swing.JFrame {
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 970, 210));
 
         titulo.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        titulo.setForeground(new java.awt.Color(0, 0, 0));
         titulo.setText("MENU - MODIFICAR DATOS DEL PACIENTE AFILIADO");
         getContentPane().add(titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, -1, -1));
 
@@ -257,6 +263,36 @@ public class VentanaModificarPaciente extends javax.swing.JFrame {
        
     }//GEN-LAST:event_btnBuscarNumActionPerformed
 
+    private void txtCedulaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyReleased
+     habilitarBoton();   // TODO add your handling code here:
+    }//GEN-LAST:event_txtCedulaKeyReleased
+
+    private void txtNumeroAfiliacionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroAfiliacionKeyReleased
+     habilitarBotonA();   // TODO add your handling code here:
+    }//GEN-LAST:event_txtNumeroAfiliacionKeyReleased
+public void habilitarBotonA()
+       {
+            if (!txtNumeroAfiliacion.getText().isEmpty())
+            {
+                btnBuscarNum.setEnabled(true);
+            }
+            else
+            {
+                btnBuscarNum.setEnabled(false);
+            }
+        }
+    
+    public void habilitarBoton()
+       {
+            if (!txtCedula.getText().isEmpty())
+            {
+                btnBuscarCedula.setEnabled(true);
+            }
+            else
+            {
+                btnBuscarCedula.setEnabled(false);
+            }
+        }
     public void modificarTabla(int columna, int fila){
         PacienteVO pacienteMod=new PacienteVO();
         pacienteMod=miCoordinador.buscarPaciente(objectToInt(modelo.getValueAt(fila, 0)));
