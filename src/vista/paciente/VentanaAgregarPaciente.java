@@ -326,6 +326,11 @@ public class VentanaAgregarPaciente extends javax.swing.JFrame{
         lblNombre.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblNombre.setText("Nombres");
 
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreActionPerformed(evt);
+            }
+        });
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNombreKeyTyped(evt);
@@ -371,7 +376,7 @@ public class VentanaAgregarPaciente extends javax.swing.JFrame{
         });
 
         lblFechaNac.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblFechaNac.setText("Fecha Nacimineto");
+        lblFechaNac.setText("Fecha Nacimiento");
 
         cbTipoSangre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "A-", "B", "B-", "O", "O-", "AB", "AB-" }));
 
@@ -653,7 +658,7 @@ public class VentanaAgregarPaciente extends javax.swing.JFrame{
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-        if ((evt.getKeyChar() < 65 || evt.getKeyChar() > 90) && (evt.getKeyChar() < 97 || evt.getKeyChar() > 165)){
+        if ((evt.getKeyChar() < 65 || evt.getKeyChar() > 90) && (evt.getKeyChar() < 97 || evt.getKeyChar() > 165) && (evt.getKeyChar()!=32)){
             evt.consume();
         }
         habilitarBoton();
@@ -667,7 +672,7 @@ public class VentanaAgregarPaciente extends javax.swing.JFrame{
     }//GEN-LAST:event_txtIdKeyTyped
 
     private void txtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyTyped
-       if ((evt.getKeyChar() < 65 || evt.getKeyChar() > 90) && (evt.getKeyChar() < 97 || evt.getKeyChar() > 165)){
+       if ((evt.getKeyChar() < 65 || evt.getKeyChar() > 90) && (evt.getKeyChar() < 97 || evt.getKeyChar() > 165) && (evt.getKeyChar()!=32)){
             evt.consume();
         }
        habilitarBoton();
@@ -737,6 +742,10 @@ public class VentanaAgregarPaciente extends javax.swing.JFrame{
     private void cbMunicipioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMunicipioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbMunicipioActionPerformed
+
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreActionPerformed
 
    
 
