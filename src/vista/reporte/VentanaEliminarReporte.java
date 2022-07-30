@@ -322,6 +322,7 @@ public class VentanaEliminarReporte extends javax.swing.JFrame {
     
     public void limpiar(){
         txtID.setText("");
+        lblNombre.setText("");
         vaciarTabla();
     }
     

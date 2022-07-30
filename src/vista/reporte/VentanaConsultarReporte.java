@@ -296,6 +296,7 @@ public class VentanaConsultarReporte extends javax.swing.JFrame {
     
     public void limpiar(){
         txtID.setText("");
+        lblNombre.setText("");
         vaciarTabla();
     }
     
