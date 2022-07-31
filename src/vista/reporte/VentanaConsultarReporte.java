@@ -218,16 +218,20 @@ public class VentanaConsultarReporte extends javax.swing.JFrame {
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
 
-        int fila, columna;
-        fila=tablaReportes.getSelectedRow();
-        columna=tablaReportes.getSelectedColumn();
-        //System.out.print(fila+"-"+columna);
-        if((fila>=0) || (columna>=0))     
-            modificarColumnaMayor(columna,fila);
-        else JOptionPane.showMessageDialog(null, "DEBE SELECCIONAR UNA EMERGENCIA", "ERROR", JOptionPane.ERROR_MESSAGE);
-        
-        
-
+        try{
+           int fila, columna;
+            fila=tablaReportes.getSelectedRow();
+            columna=tablaReportes.getSelectedColumn();
+            //System.out.print(fila+"-"+columna);
+            if((fila>=0) || (columna>=0)){
+                modificarColumnaMayor(columna,fila);
+            }else{
+               JOptionPane.showMessageDialog(null, "DEBE SELECCIONAR UN REPORTE", "ERROR", JOptionPane.ERROR_MESSAGE);  
+            }   
+                
+        }catch(ArrayIndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(null, "DEBE SELECCIONAR UN REPORTE", "ERROR", JOptionPane.ERROR_MESSAGE); 
+        }
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void txtIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDKeyTyped
@@ -289,7 +293,7 @@ public class VentanaConsultarReporte extends javax.swing.JFrame {
                 btnConsultar.setEnabled(true);
             }
         }else{
-            JOptionPane.showMessageDialog(null, "ESTE PACIENTE NO TIENE EMERGENCIAS", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "ESTE PACIENTE NO TIENE REPORTES", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
         
     }
@@ -308,6 +312,8 @@ public class VentanaConsultarReporte extends javax.swing.JFrame {
             txtID.setText("");
             lblNombre.setText("");
             vaciarTabla();
+            btnBuscar.setEnabled(false);
+            btnConsultar.setEnabled(false);
         }catch(NullPointerException e){
             txtID.setText("");
         }

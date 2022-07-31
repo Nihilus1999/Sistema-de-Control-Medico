@@ -208,11 +208,11 @@ public class VentanaConsultarHistorial extends javax.swing.JFrame {
        int fila, columna;
         fila=tablaHistorial.getSelectedRow();
         columna=tablaHistorial.getSelectedColumn();
-        if(columna >=0){
+        if(columna >=0 && fila>=0){
             buscarReporte(columna, fila);
         }     
         else{
-            JOptionPane.showMessageDialog(null, "DEBE SELECCIONAR UNA EMERGENCIA", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "DEBE SELECCIONAR UN HISTORIAL", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
             
     }//GEN-LAST:event_btnDescripcionActionPerformed
@@ -245,14 +245,14 @@ public void habilitarBoton()
     }
 
     public void buscarReporte(int columna, int fila){
-       
-        ReporteVO reporte=new ReporteVO();
-        reporte=miCoordinador.buscarReporte(Integer.parseInt(txtID.getText()), objectToInt(modelo.getValueAt(fila, 0)));
-        
-        miCoordinador.mostrarTextoConsultarClinica(reporte.getDescripcion());
-        //System.out.println(reporte.getDescripcion());
-					
-
+       try{
+            ReporteVO reporte=new ReporteVO();
+            reporte=miCoordinador.buscarReporte(Integer.parseInt(txtID.getText()), objectToInt(modelo.getValueAt(fila, 0)));
+            miCoordinador.mostrarTextoConsultarClinica(reporte.getDescripcion());	 
+       }catch(ArrayIndexOutOfBoundsException e){
+           JOptionPane.showMessageDialog(null, "DEBE SELECCIONAR UN HISTORIAL", "ERROR", JOptionPane.ERROR_MESSAGE);
+       }
+        			
     }
     
     public void cargarTabla(){
@@ -276,10 +276,9 @@ public void habilitarBoton()
                 modelo.setValueAt(r.getMunicipio().name(), contador, 2);
                 modelo.setValueAt(r.getClinica(), contador, 3);
                 btnDescripcion.setEnabled(true);
-
             }
         }else{
-            JOptionPane.showMessageDialog(null, "ESTE PACIENTE NO TIENE EMERGENCIAS", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "ESTE PACIENTE NO TIENE HISTORIAL", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
         
     }

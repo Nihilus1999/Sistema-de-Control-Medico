@@ -216,7 +216,6 @@ public class VentanaEliminarReporte extends javax.swing.JFrame {
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, 430, 390));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/imagenes/fondoEmergencia.jpg"))); // NOI18N
-        jLabel4.setText("jLabel4");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 420));
 
         pack();
@@ -242,8 +241,7 @@ public class VentanaEliminarReporte extends javax.swing.JFrame {
             lblNombre.setText(pacienteMod.getNombre() + " " + pacienteMod.getApellido());
         } catch (SQLException ex) {
             Logger.getLogger(VentanaConsultarReporte.class.getName()).log(Level.SEVERE, null, ex);
-        }catch(Exception e)
-        {
+        }catch(Exception e){
             
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
@@ -251,14 +249,14 @@ public class VentanaEliminarReporte extends javax.swing.JFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         int fila, columna;
         try{
-        fila=tablaReportes.getSelectedRow();
-        columna=tablaReportes.getSelectedColumn();
-        if((fila>=0) || (columna>=0))     
-            modificarColumnaMayor(columna,fila);
-        else
-            JOptionPane.showMessageDialog(null, "DEBE SELECCIONAR UNA EMERGENCIA", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }catch(NumberFormatException ex)
-        {
+            fila=tablaReportes.getSelectedRow();
+            columna=tablaReportes.getSelectedColumn();
+            if((fila>=0) || (columna>=0))     
+                modificarColumnaMayor(columna,fila);
+            else{
+                JOptionPane.showMessageDialog(null, "DEBE SELECCIONAR UN REPORTE", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }   
+        }catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(null, "ID INVALIDO", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
@@ -282,12 +280,10 @@ public class VentanaEliminarReporte extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIDKeyReleased
 public void habilitarBoton()
        {
-            if (!txtID.getText().isEmpty())
-            {
+            if (!txtID.getText().isEmpty()){
                 btnBuscar.setEnabled(true);
             }
-            else
-            {
+            else{
                 btnBuscar.setEnabled(false);
                 btnEliminar.setEnabled(false);
             }
@@ -305,7 +301,7 @@ public void habilitarBoton()
             JOptionPane.showMessageDialog(null, "REPORTE ELIMINADO EXISOTAMENTE");  
 	}else{
             System.out.println(resp);
-            JOptionPane.showMessageDialog(null, "NO SE PUDO ELIMINAR","ADVERTENCIA",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "NO SE PUDO ELIMINAR EL REPORTE","ADVERTENCIA",JOptionPane.WARNING_MESSAGE);
 	}
 					
 
@@ -323,10 +319,9 @@ public void habilitarBoton()
                 modelo.setValueAt(r.getMunicipio().name(), contador, 2);
                 modelo.setValueAt(r.getClinica(), contador, 3);
                 btnEliminar.setEnabled(true);
-
             }
         }else{
-            JOptionPane.showMessageDialog(null, "ESTE PACIENTE NO TIENE EMERGENCIAS", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "ESTE PACIENTE NO TIENE REPORTES", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -340,7 +335,6 @@ public void habilitarBoton()
             modelo.setValueAt(r.getFechaRegistro().getDia()+"-"+r.getFechaRegistro().getMes()+"-"+r.getFechaRegistro().getAn(), contador, 1);
             modelo.setValueAt(r.getMunicipio().name(), contador, 2);
             modelo.setValueAt(r.getClinica(), contador, 3);
-
         } 
     }
     
@@ -367,6 +361,8 @@ public void habilitarBoton()
             txtID.setText("");
             lblNombre.setText("");
             vaciarTabla();
+            btnEliminar.setEnabled(false);
+            btnBuscar.setEnabled(false);
         }catch(NullPointerException e){
             txtID.setText("");
         }

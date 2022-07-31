@@ -183,12 +183,12 @@ public class VentanaEliminarClinica extends javax.swing.JFrame {
        
         ClinicaVO clinicaEli=new ClinicaVO();
         clinicaEli=miCoordinador.buscarClinica(modelo.getValueAt(fila,0).toString(), modelo.getValueAt(fila,1).toString());
-      
         String resp=miCoordinador.EliminarClinica(clinicaEli);
-					
+	String item = cbMunicipio.getSelectedItem().toString();
+        ArrayList<String> aux=miCoordinador.devolverClinicas(item);				
 	if(resp.equals("ok")){
-            cargarTabla();
-            JOptionPane.showMessageDialog(null, "ESTADO MODIFICADO EXISOTAMENTE");  
+            llenarTabla(item,aux);
+            JOptionPane.showMessageDialog(null, "CLINICA ELIMINADA EXISOTAMENTE");  
 	}else{
             System.out.println(resp);
             JOptionPane.showMessageDialog(null, "NO SE PUDO ELIMINAR","ADVERTENCIA",JOptionPane.WARNING_MESSAGE);
@@ -204,14 +204,7 @@ public class VentanaEliminarClinica extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "ESTE MUNICIPIO NO POSEE CLINICAS AFILIADAS", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
             else{
-               btnEliminar.setEnabled(true);
-               modelo.setRowCount(0);
-                int contador=0;
-                for(String c:aux){
-                    modelo.insertRow(contador, new Object[]{});
-                    modelo.setValueAt(c, contador, 0);
-                    modelo.setValueAt(item, contador, 1); 
-                } 
+               llenarTabla(item,aux);
             } 
         }catch(NullPointerException e){
                
@@ -222,6 +215,16 @@ public class VentanaEliminarClinica extends javax.swing.JFrame {
         btnEliminar.setEnabled(false);
     }//GEN-LAST:event_cbMunicipioKeyReleased
 
+    public void llenarTabla(String item,ArrayList<String> aux){
+        btnEliminar.setEnabled(true);
+               modelo.setRowCount(0);
+                int contador=0;
+                for(String c:aux){
+                    modelo.insertRow(contador, new Object[]{});
+                    modelo.setValueAt(c, contador, 0);
+                    modelo.setValueAt(item, contador, 1); 
+                } 
+    }
 
     public void cargarTabla(){
         String datos[][]={};
