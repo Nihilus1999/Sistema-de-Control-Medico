@@ -291,18 +291,23 @@ public void habilitarBoton()
     public void modificarColumnaMayor(int columna, int fila){
        
         ReporteVO reporte=new ReporteVO();
-        reporte=miCoordinador.buscarReporte(Integer.parseInt(txtID.getText()), objectToInt(modelo.getValueAt(fila, 0)));
         
-        String resp=miCoordinador.eliminarReporte(reporte);
-        //miCoordinador.mostrarTextoConsultarClinica(reporte.getDescripcion());
-        if(resp.equals("ok")){
-            cargarTabla();
-            llenarTabla(Integer.parseInt(txtID.getText()));
-            JOptionPane.showMessageDialog(null, "REPORTE ELIMINADO EXISOTAMENTE");  
-	}else{
-            System.out.println(resp);
-            JOptionPane.showMessageDialog(null, "NO SE PUDO ELIMINAR EL REPORTE","ADVERTENCIA",JOptionPane.WARNING_MESSAGE);
-	}
+        try{
+            reporte=miCoordinador.buscarReporte(Integer.parseInt(txtID.getText()), objectToInt(modelo.getValueAt(fila, 0)));
+            String resp=miCoordinador.eliminarReporte(reporte);
+          //miCoordinador.mostrarTextoConsultarClinica(reporte.getDescripcion());
+          if(resp.equals("ok")){
+              cargarTabla();
+              llenarTabla(Integer.parseInt(txtID.getText()));
+              JOptionPane.showMessageDialog(null, "REPORTE ELIMINADO EXISOTAMENTE");  
+          }else{
+              System.out.println(resp);
+              JOptionPane.showMessageDialog(null, "NO SE PUDO ELIMINAR EL REPORTE","ADVERTENCIA",JOptionPane.WARNING_MESSAGE);
+          }  
+        }catch(java.lang.ArrayIndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(null, "DEBE SELECCIONAR UN REPORTE", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        
 					
 
     }
