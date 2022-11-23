@@ -30,10 +30,10 @@ public class UsuarioDAO {
 	miConexion = new Conexion();
 	String resultado=miConexion.conectar();
 	if (resultado.equals("conectado")) {
-            connection = miConexion.getConnection();
-            preStatement = null;
+                        connection = miConexion.getConnection();
+                        preStatement = null;
 	}else {
-            JOptionPane.showMessageDialog(null, resultado,"Error",JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, resultado,"Error",JOptionPane.ERROR_MESSAGE);
 	}
 	return resultado;
     }
@@ -59,10 +59,10 @@ public UsuarioVO consultarUsuario(String user, String password) throws SQLExcept
 	result=preStatement.executeQuery();
 				
 	if(result.next()){
-            miUsuario=new UsuarioVO();
-            miUsuario.setUser(result.getString("user"));
-            miUsuario.setPassword(result.getString("password"));
-            miUsuario.setCargo(result.getString("cargo"));
+                        miUsuario=new UsuarioVO();
+                        miUsuario.setUser(result.getString("user"));
+                        miUsuario.setPassword(result.getString("password"));
+                        miUsuario.setCargo(result.getString("cargo"));
 	}		
 			   
     } catch (SQLException e) {
@@ -71,7 +71,7 @@ public UsuarioVO consultarUsuario(String user, String password) throws SQLExcept
 	result.close();
 	preStatement.close();
 	connection.close();
-    miConexion.desconectar();
+                  miConexion.desconectar();
     }
     return miUsuario;
 }
